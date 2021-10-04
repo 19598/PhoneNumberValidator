@@ -24,20 +24,11 @@ public class PhoneNumberValidator {
         for (String phoneNumber : phoneNumbers) {
             myMatcher = expression.matcher(phoneNumber);
             if (myMatcher.matches()) {
-                int offset = 0;
-                if (myMatcher.group(1) != null) {
-                    offset = 0;
+                int offset = 1;
+                while (myMatcher.group(offset) == null) {
+                    offset++;
                 }
-                else if (myMatcher.group(4) != null) {
-                    offset = 3;
-                }
-                else if (myMatcher.group(7) != null) {
-                    offset = 6;
-                }
-                else {
-                    offset = 9;
-                }
-                System.out.println("(" + myMatcher.group(1 + offset) + ") " + myMatcher.group(2 + offset) + "-" + myMatcher.group(3 + offset));
+                System.out.println("(" + myMatcher.group(offset) + ") " + myMatcher.group(1 + offset) + "-" + myMatcher.group(2 + offset));
             }
         }
     }
