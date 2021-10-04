@@ -21,13 +21,16 @@ public class PhoneNumberValidator {
         Pattern expression = Pattern.compile("[(]([0-9]{3})[)]([0-9]{3})-([0-9]{4})|[(]([0-9]{3})[)] ([0-9]{3})-([0-9]{4})|([0-9]{3})-([0-9]{3})-([0-9]{4})|([0-9]{3})[.]([0-9]{3})[.]([0-9]{4})");//pattern
         Matcher myMatcher;
         
+        //loop through the numbers and test them
         for (String phoneNumber : phoneNumbers) {
             myMatcher = expression.matcher(phoneNumber);
             if (myMatcher.matches()) {
                 int offset = 1;
+                //find the first number
                 while (myMatcher.group(offset) == null) {
                     offset++;
                 }
+                //print the number in the requested format
                 System.out.println("(" + myMatcher.group(offset) + ") " + myMatcher.group(1 + offset) + "-" + myMatcher.group(2 + offset));
             }
         }
